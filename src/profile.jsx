@@ -324,13 +324,13 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-xl bg-[#4F46E5] hover:bg-[#4338ca] text-white font-medium transition-all shadow-lg shadow-[#4F46E5]/25 flex items-center transform hover:translate-y-[-2px]">
+              <a href="https://github.com/abhishek-jain-1999" target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-xl bg-[#4F46E5] hover:bg-[#4338ca] text-white font-medium transition-all shadow-lg shadow-[#4F46E5]/25 flex items-center transform hover:translate-y-[-2px]">
                 <Github size={20} className="mr-2" />
                 View GitHub Profile
               </a>
               <a 
-                href="/MyResume.pdf" 
-                download="Abhishek_Jain_Resume.pdf"
+                href="/My Resume.pdf" 
+                download="Abhishek Jain Resume.pdf"
                 className="px-6 py-3 rounded-xl bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] text-[var(--text-primary)] border border-[var(--border-color)] font-medium transition-all flex items-center shadow-sm cursor-pointer"
               >
                 <Download size={20} className="mr-2" />

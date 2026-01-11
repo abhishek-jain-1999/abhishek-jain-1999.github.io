@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Profile from './profile.jsx'
+import App from './profile.jsx'
+import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Profile />
+    <App />
   </React.StrictMode>,
 )

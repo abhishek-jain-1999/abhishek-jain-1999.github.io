@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #F9FAFB;
+    --bg-secondary: #FFFFFF;
+    --bg-tertiary: #F3F4F6;
+    --text-primary: #111827;
+    --text-secondary: #4B5563;
+    --text-muted: #6B7280;
+    --border-color: rgba(229, 231, 235, 1);
+    --accent-primary: #4F46E5;
+    --accent-glow: rgba(79, 70, 229, 0.05);
+  }
+
+  .dark {
+    --bg-primary: #050509;
+    --bg-secondary: #0B0B10;
+    --bg-tertiary: #16161F;
+    --text-primary: #F9FAFB;
+    --text-secondary: #9CA3AF;
+    --text-muted: #6B7280;
+    --border-color: rgba(31, 41, 55, 0.5);
+    --accent-primary: #4F46E5;
+    --accent-glow: rgba(79, 70, 229, 0.15);
+  }
+
+  body {
+    @apply bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300;
+  }
+}
