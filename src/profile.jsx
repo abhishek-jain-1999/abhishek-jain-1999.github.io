@@ -328,10 +328,14 @@ const Hero = () => {
                 <Github size={20} className="mr-2" />
                 View GitHub Profile
               </a>
-              <button className="px-6 py-3 rounded-xl bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] text-[var(--text-primary)] border border-[var(--border-color)] font-medium transition-all flex items-center shadow-sm">
+              <a 
+                href="/MyResume.pdf" 
+                download="Abhishek_Jain_Resume.pdf"
+                className="px-6 py-3 rounded-xl bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] text-[var(--text-primary)] border border-[var(--border-color)] font-medium transition-all flex items-center shadow-sm cursor-pointer"
+              >
                 <Download size={20} className="mr-2" />
                 Download Resume
-              </button>
+              </a>
               <a href="mailto:abhu.jain.1999@gmail.com" className="px-6 py-3 rounded-xl bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] text-[var(--text-primary)] border border-[var(--border-color)] font-medium transition-all flex items-center shadow-sm">
                 <Mail size={20} className="mr-2" />
                 Connect with me
