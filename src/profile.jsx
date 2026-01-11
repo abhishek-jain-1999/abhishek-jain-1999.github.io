@@ -23,9 +23,11 @@ import {
   Moon
 } from 'lucide-react';
 
+
 /**
  * UTILITIES & HOOKS
  */
+
 
 const useScrollPosition = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -37,9 +39,11 @@ const useScrollPosition = () => {
   return scrollPosition;
 };
 
+
 const useOnScreen = (options) => {
   const ref = useRef(null);
   const [isVisible, setVisible] = useState(false);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -49,22 +53,28 @@ const useOnScreen = (options) => {
       }
     }, options);
 
+
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, [ref, options]);
 
+
   return [ref, isVisible];
 };
+
 
 /**
  * THEME MANAGEMENT
  */
 const ThemeContext = React.createContext();
 
+
 const ThemeProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(true);
 
+
   const toggleTheme = () => setIsDark(!isDark);
+
 
   useEffect(() => {
     const root = document.documentElement;
@@ -89,6 +99,7 @@ const ThemeProvider = ({ children }) => {
     }
   }, [isDark]);
 
+
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>
       <div className={`transition-colors duration-300 ${isDark ? 'dark' : ''}`}>
@@ -98,9 +109,11 @@ const ThemeProvider = ({ children }) => {
   );
 };
 
+
 /**
  * UI COMPONENTS
  */
+
 
 const RevealSection = ({ children, delay = 0, className = "" }) => {
   const [ref, isVisible] = useOnScreen({ threshold: 0.1 });
@@ -120,6 +133,7 @@ const RevealSection = ({ children, delay = 0, className = "" }) => {
   );
 };
 
+
 const Chip = ({ label, icon: Icon }) => (
   <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium 
     bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent-primary)] 
@@ -128,6 +142,7 @@ const Chip = ({ label, icon: Icon }) => (
     {label}
   </span>
 );
+
 
 const SectionTitle = ({ title, icon: Icon }) => (
   <div className="flex items-center space-x-3 mb-8">
@@ -139,9 +154,11 @@ const SectionTitle = ({ title, icon: Icon }) => (
   </div>
 );
 
+
 /**
  * SUB-COMPONENTS
  */
+
 
 const TopNav = () => {
   const scrollY = useScrollPosition();
@@ -149,10 +166,12 @@ const TopNav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isDark, toggleTheme } = React.useContext(ThemeContext);
 
+
   // Custom Smooth Scroll Handler
   const handleNavClick = (e, item) => {
     e.preventDefault();
     let targetId = item.toLowerCase();
+
 
     // Special logic for Skills to handle Desktop vs Mobile IDs
     if (targetId === 'skills') {
@@ -165,11 +184,13 @@ const TopNav = () => {
       }
     }
 
+
     const element = document.getElementById(targetId);
     if (element) {
       const headerOffset = 100; // Height of TopNav + extra padding
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
 
       window.scrollTo({
         top: offsetPosition,
@@ -180,8 +201,10 @@ const TopNav = () => {
       window.history.pushState(null, null, `#${item.toLowerCase()}`);
     }
 
+
     if (isMobileMenuOpen) setIsMobileMenuOpen(false);
   };
+
 
   return (
     <nav 
@@ -199,6 +222,7 @@ const TopNav = () => {
           </span>
         </div>
 
+
         {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-8">
           {['Experience', 'Skills', 'Projects'].map((item) => (
@@ -213,7 +237,7 @@ const TopNav = () => {
             </a>
           ))}
           <a 
-            href="https://github.com" 
+            href="https://github.com/abhishek-jain-1999" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center space-x-2 px-4 py-2 rounded-lg bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] text-[var(--text-primary)] text-sm font-medium transition-all border border-[var(--border-color)]"
@@ -229,6 +253,7 @@ const TopNav = () => {
             {isDark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
         </div>
+
 
         {/* Mobile Menu Toggle */}
         <div className="flex items-center gap-4 md:hidden">
@@ -246,6 +271,7 @@ const TopNav = () => {
           </button>
         </div>
       </div>
+
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
@@ -266,8 +292,10 @@ const TopNav = () => {
   );
 };
 
+
 const Hero = () => {
   const { isDark } = React.useContext(ThemeContext);
+
 
   return (
     <section className="relative pt-32 pb-16 md:pt-48 md:pb-24 flex items-center justify-center overflow-hidden bg-[var(--bg-primary)] transition-colors duration-300">
@@ -278,6 +306,7 @@ const Hero = () => {
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
         )}
       </div>
+
 
       <div className="max-w-[1120px] mx-auto px-6 relative z-10 w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
         <div className="col-span-1 md:col-span-8 md:col-start-1">
@@ -304,6 +333,7 @@ const Hero = () => {
               </div>
             </div>
 
+
             {/* Focus Badge - Mobile */}
             <div className="md:hidden flex items-center gap-2 mb-6 p-2 w-fit rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-color)]">
                 <div className="w-6 h-6 rounded-full bg-[#22C55E]/10 flex items-center justify-center text-[#22C55E]">
@@ -322,6 +352,7 @@ const Hero = () => {
             <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-2xl mb-10">
               Building resilient backend systems and silky-smooth mobile apps. I blend clean code with scalable architecture to create digital experiences that works smoothly.
             </p>
+
 
             <div className="flex flex-wrap gap-4">
               <a href="https://github.com/abhishek-jain-1999" target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-xl bg-[#4F46E5] hover:bg-[#4338ca] text-white font-medium transition-all shadow-lg shadow-[#4F46E5]/25 flex items-center transform hover:translate-y-[-2px]">
@@ -342,6 +373,7 @@ const Hero = () => {
               </a>
             </div>
 
+
             <div className="mt-12 flex items-center gap-6 text-sm text-[var(--text-secondary)]">
               <div className="flex items-center">
                 <MapPin size={16} className="mr-2 text-[var(--text-muted)]" />
@@ -359,13 +391,16 @@ const Hero = () => {
   );
 };
 
+
 const ExperienceCard = ({ company, role, period, location, items, isLast }) => (
   <div className="relative pl-8 md:pl-0">
     <div className="hidden md:block absolute left-[-41px] top-0 bottom-0 w-px bg-[var(--border-color)]"></div>
     <div className="hidden md:block absolute left-[-45px] top-6 w-2.5 h-2.5 rounded-full bg-[#4F46E5] border-4 border-[var(--bg-primary)]"></div>
 
+
     <div className="md:hidden absolute left-0 top-0 bottom-0 w-px bg-[var(--border-color)]"></div>
     <div className="md:hidden absolute left-[-4px] top-6 w-2.5 h-2.5 rounded-full bg-[#4F46E5] border-4 border-[var(--bg-primary)]"></div>
+
 
     <div className={`p-6 md:p-8 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] hover:border-[#4F46E5]/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#4F46E5]/5 ${!isLast ? 'mb-8' : ''}`}>
       <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-2">
@@ -390,6 +425,7 @@ const ExperienceCard = ({ company, role, period, location, items, isLast }) => (
   </div>
 );
 
+
 const SkillsSection = () => {
   const skillGroups = [
     {
@@ -405,6 +441,7 @@ const SkillsSection = () => {
       skills: ["MySQL", "PostgreSQL", "Android Development", "Git", "REST API", "CI/CD", "Postman", "Prompt Engineering", "GitHub", "JIRA", "Pandas", "Matplotlib", "Jenkins", "GitHub Actions", "Artifactory", "MongoDB", "Microservices", "SQL", "Excel", "Google Colab", "Docker", "Kubernetes", "NoSQL", "Generative AI"]
     }
   ];
+
 
   return (
     <div className="space-y-8 h-full">
@@ -439,14 +476,20 @@ const SkillsSection = () => {
   );
 };
 
-const ProjectCard = ({ title, tags, description, delay }) => (
+
+const ProjectCard = ({ title, tags, description, delay, link }) => (
   <RevealSection delay={delay}>
     <div className="group h-full p-6 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] hover:border-[#4F46E5]/40 transition-all duration-300 flex flex-col hover:shadow-2xl hover:shadow-[#4F46E5]/5">
       <div className="flex justify-between items-start mb-4">
         <div className="p-3 rounded-lg bg-[#4F46E5]/10 text-[#4F46E5] group-hover:bg-[#4F46E5] group-hover:text-white transition-colors">
           <Layers size={24} />
         </div>
-        <a href="#" className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+        <a 
+          href={link} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+        >
           <ExternalLink size={20} />
         </a>
       </div>
@@ -466,6 +509,7 @@ const ProjectCard = ({ title, tags, description, delay }) => (
     </div>
   </RevealSection>
 );
+
 
 const AchievementItem = ({ title, description, badge }) => (
   <div className="flex gap-4 p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] hover:border-[#22C55E]/30 transition-all hover:bg-[var(--bg-tertiary)]">
@@ -488,6 +532,7 @@ const AchievementItem = ({ title, description, badge }) => (
   </div>
 );
 
+
 const Footer = () => (
   <footer className="py-12 border-t border-[var(--border-color)] bg-[var(--bg-primary)] transition-colors duration-300">
     <div className="max-w-[1120px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
@@ -495,9 +540,8 @@ const Footer = () => (
         © {new Date().getFullYear()} Abhishek Jain. 
       </div>
       <div className="flex items-center space-x-6">
-        <a href="#" className="text-[var(--text-secondary)] hover:text-[#4F46E5] transition-colors"><Github size={20} /></a>
-        <a href="#" className="text-[var(--text-secondary)] hover:text-[#0A66C2] transition-colors"><Linkedin size={20} /></a>
-        <a href="mailto:hello@example.com" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"><Mail size={20} /></a>
+        <a href="https://github.com/abhishek-jain-1999" target="_blank" rel="noopener noreferrer" className="text-[var(--text-secondary)] hover:text-[#4F46E5] transition-colors"><Github size={20} /></a>
+        <a href="mailto:abhu.jain.1999@gmail.com" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"><Mail size={20} /></a>
       </div>
       <div className="text-xs text-[var(--text-secondary)] font-mono">
         Built with React & Tailwind
@@ -505,6 +549,7 @@ const Footer = () => (
     </div>
   </footer>
 );
+
 
 /**
  * MAIN APP COMPONENT
@@ -516,6 +561,7 @@ const Portfolio = () => {
     </ThemeProvider>
   );
 };
+
 
 const AppContent = () => {
   return (
@@ -565,24 +611,52 @@ const AppContent = () => {
               </div>
             </section>
 
+
             {/* Projects Section */}
             <section id="projects" className="scroll-mt-32">
               <SectionTitle title="Selected Projects" icon={Layers} />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <ProjectCard 
+                  title="Funny Chat - Realtime Microservices"
+                  description="A scalable, distributed messaging system handling high-throughput traffic via Spring Boot (Kotlin) & Flutter. Features a split-backend design for media processing, Polyglot Persistence (Mongo for logs, Postgres for auth), MinIO for S3-compatible object storage, and full Kubernetes orchestration with Horizontal Pod Autoscaling (HPA)."
+                  tags={["Kotlin", "Microservices", "Kubernetes", "MinIO", "MongoDB", "Flutter", "kubernetes"]}
+                  delay={300}
+                  link="https://github.com/abhishek-jain-1999/funnychat"
+                />
+
+                <ProjectCard 
+                  title="Limited Cart - Event Driven Architecture"
+                  description="Production-grade e-commerce engine engineered for 'Flash Sale' concurrency spikes. Orchestrates distributed transactions using Temporal Sagas to prevent zombie reservations. Leverages Redis Lua scripts for atomic inventory locking, Kafka for asynchronous event decoupling, and Optimistic Locking to ensure data consistency under heavy load."
+                  tags={["Temporal.io", "Kafka", "Redis Lua", "Distributed Sagas", "Spring Boot", "Docker", "High Concurrency", "kubernetes"]}
+                  delay={400}
+                  link="https://github.com/abhishek-jain-1999/limitedcart"
+                />
+
+                <ProjectCard 
+                  title="High-Perf URL Shortener"
+                  description="Ultra-low latency (<10ms) redirection service built with FastAPI and AsyncPG. Implements a write-through Redis caching strategy with LRU eviction, sliding window rate limiting for DDoS protection, and a Base62 encoding algorithm for collision-free ID generation. Optimized with multi-stage Docker builds for minimal footprint."
+                  tags={["FastAPI", "Python", "Redis", "AsyncIO", "Rate Limiting", "Docker", "PostgreSQL"]}
+                  delay={500}
+                  link="https://github.com/abhishek-jain-1999/url-shortener"
+                />
+
+                <ProjectCard 
                   title="Delhi Transit"
                   description="Full-stack public transit app offering real-time bus tracking and route planning. Built custom backend to aggregate GTFS data."
                   tags={["Android", "Spring Boot", "PostgreSQL", "Google Maps API"]}
                   delay={100}
+                  link="https://github.com/abhishek-jain-1999/DelhiTransit"
                 />
                 <ProjectCard 
                   title="Handwritten Digit Recognition"
                   description="Machine Learning model capable of recognizing handwritten digits from varied writing styles with 98% accuracy."
                   tags={["Python", "TensorFlow", "OpenCV", "CNN"]}
                   delay={200}
+                  link="https://github.com/abhishek-jain-1999"
                 />
               </div>
             </section>
+
 
             {/* Achievements Section */}
             <section id="achievements">
@@ -604,7 +678,9 @@ const AppContent = () => {
                </div>
             </section>
 
+
           </div>
+
 
           {/* Sidebar Column (Skills) - Desktop */}
           {/* Changed ID to skills-desktop to allow specific targeting */}
@@ -614,19 +690,22 @@ const AppContent = () => {
             </div>
           </div>
 
+
           {/* Mobile Skills */}
           {/* Changed ID to skills-mobile to allow specific targeting */}
           <div className="md:hidden space-y-12 scroll-mt-32" id="skills-mobile">
              <SkillsSection />
           </div>
 
+
         </div>
       </main>
+
 
       <Footer />
     </div>
   );
 };
 
-export default Portfolio;
 
+export default Portfolio;
