@@ -430,15 +430,15 @@ const SkillsSection = () => {
   const skillGroups = [
     {
       title: "Programming Languages",
-      skills: ["Java", "Python", "JavaScript", "Kotlin", "C++"]
+      skills: ["Java", "Python", "JavaScript", "Kotlin", "C", "C++"]
     },
     {
       title: "Libraries and Frameworks",
-      skills: ["Firebase", "Flutter", "MVVM", "MVC", "Python Libraries", "Spring Boot", "SonarQube"]
+      skills: ["Spring Boot", "FastAPI", "Flutter", "Firebase", "MVVM", "MVC", "Python Libraries", "SonarQube"]
     },
     {
       title: "Tools & Platforms",
-      skills: ["MySQL", "PostgreSQL", "Android Development", "Git", "REST API", "CI/CD", "Postman", "Prompt Engineering", "GitHub", "JIRA", "Pandas", "Matplotlib", "Jenkins", "GitHub Actions", "Artifactory", "MongoDB", "Microservices", "SQL", "Excel", "Google Colab", "Docker", "Kubernetes", "NoSQL", "Generative AI"]
+      skills: ["MySQL", "PostgreSQL", "MongoDB", "SQL Server", "Cassandra", "NoSQL", "Android Development", "Git", "GitHub", "REST API", "CI/CD", "Jenkins", "GitHub Actions", "Postman", "Docker", "Kubernetes", "Microservices", "AWS", "Grafana", "Prometheus", "Artifactory", "JIRA", "Pandas", "Matplotlib", "Excel", "Google Colab", "Prompt Engineering", "Generative AI"]
     }
   ];
 
