@@ -550,6 +550,42 @@ const Footer = () => (
   </footer>
 );
 
+/**
+ * Custom Hook to generate a dynamic favicon
+ */
+const useFavicon = () => {
+  useEffect(() => {
+    // Define the SVG with your gradient colors (#4F46E5 to #22C55E)
+    const svg = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#22C55E;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <circle cx="32" cy="32" r="32" fill="url(#grad)"/>
+        <text x="32" y="41" font-family="sans-serif" font-weight="bold" font-size="24" fill="white" text-anchor="middle">AJ</text>
+      </svg>
+    `;
+
+    // Convert SVG to Data URI
+    const svgUrl = `data:image/svg+xml;base64,${btoa(svg)}`;
+
+    // Find existing favicon link or create a new one
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    
+    // Set the new icon
+    link.href = svgUrl;
+  }, []);
+};
+
+
 
 /**
  * MAIN APP COMPONENT
@@ -564,6 +600,7 @@ const Portfolio = () => {
 
 
 const AppContent = () => {
+  useFavicon(); 
   return (
     <div className="bg-[var(--bg-primary)] min-h-screen text-[var(--text-secondary)] font-sans selection:bg-[#4F46E5]/30 selection:text-white transition-colors duration-300">
       <TopNav />
